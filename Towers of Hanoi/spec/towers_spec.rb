@@ -24,17 +24,17 @@ RSpec.describe "Towers" do
       expect(towers.valid_move?([0,1])).to be true
     end
     
-    it "return false if move is invalid" do
-      expect(towers.valid_move?([1,3])).to be false
+    it "return argument error if move is invalid" do
+      expect{towers.valid_move?([1,3])}.to raise_error("ArgumentError")
     end
   end
   
   describe "#won?" do 
+    let(:towers2) {Towers.new}
     it "returns false when game is initialized" do
       expect(towers.won?).to be false 
     end
 
-  let(:towers2) {Towers.new}
     it "returns false when tower is not stacked in order" do
       towers2.piles = [[], [2, 3, 1], []]
       expect(towers2.won?).to be false 
@@ -44,8 +44,8 @@ RSpec.describe "Towers" do
       towers2.piles = [[], [3, 2, 1], []]
       expect(towers2.won?).to be true 
     end
-  
   end 
+
   
 end
 

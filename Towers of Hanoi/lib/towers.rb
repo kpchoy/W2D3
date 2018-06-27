@@ -17,13 +17,13 @@ class Towers
   
   def valid_move?(array)
     if @piles[array[0]].nil? || @piles[array[1]].nil?
-      return false
+      raise "ArgumentError"
     elsif @piles[array[0]].empty? || @piles[array[1]].last == 1
-      return false 
+      raise "ArgumentError"
     elsif array[0].between?(0,2) && array[1].between?(0,2)
       return true
     end 
-    false
+    raise "ArgumentError"
   end
   
   def gets_move
@@ -45,7 +45,7 @@ class Towers
       display 
       pos = gets_move
       if valid_move?(pos) == false 
-        puts "Please pick again"
+        p "Wrong move, pease try again"
       else valid_move?(pos)
         move_pile(pos)
       end
